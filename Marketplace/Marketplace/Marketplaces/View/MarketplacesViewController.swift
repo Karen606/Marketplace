@@ -14,6 +14,10 @@ class MarketplacesViewController: UIViewController {
     @IBOutlet weak var marketplaceTableView: UITableView!
     private let viewModel = MarketplacesViewModel.shared
     private var cancellables: Set<AnyCancellable> = []
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +47,18 @@ class MarketplacesViewController: UIViewController {
     }
     
     @objc func addMarketplace() {
-        
+        let marketplaceFormVC = MarketplaceFormViewController(nibName: "MarketplaceFormViewController", bundle: nil)
+        self.navigationController?.pushViewController(marketplaceFormVC, animated: true)
     }
 }
 
 extension MarketplacesViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         viewModel.filter(by: textField.text)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
     }
 }
 

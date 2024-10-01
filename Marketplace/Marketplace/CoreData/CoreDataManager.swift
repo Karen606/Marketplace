@@ -78,11 +78,11 @@ class CoreDataManager {
         }
     }
     
-    func saveMarketplace(marketplace: Marketplace, completion: @escaping (Error?) -> Void) {
+    func addMarketplace(name: String, completion: @escaping (Error?) -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {
             let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "name == %@", marketplace.name)
+            fetchRequest.predicate = NSPredicate(format: "name == %@", name)
             
             do {
                 let results = try backgroundContext.fetch(fetchRequest)
@@ -92,9 +92,9 @@ class CoreDataManager {
                     }
                 } else {
                     let newMarketplace = Marketplace(context: backgroundContext)
-                    newMarketplace.id = marketplace.id
-                    newMarketplace.name = marketplace.name
-                    newMarketplace.products = marketplace.products
+                    newMarketplace.id = UUID()
+                    newMarketplace.name = name
+                    newMarketplace.products = []
                     do {
                         try backgroundContext.save()
                         DispatchQueue.main.async {

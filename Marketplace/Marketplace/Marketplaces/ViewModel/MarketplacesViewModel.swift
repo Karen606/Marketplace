@@ -23,6 +23,14 @@ class MarketplacesViewModel {
         }
     }
     
+    func addMarketplace(name: String, completion: @escaping (Error?) -> Void) {
+        CoreDataManager.shared.addMarketplace(name: name) { [weak self] error in
+            guard let self = self else { return }
+            completion(error)
+            self.fetchData()
+        }
+    }
+    
     func filter(by value: String?) {
         self.search = value
         if let value = value, !value.isEmpty {

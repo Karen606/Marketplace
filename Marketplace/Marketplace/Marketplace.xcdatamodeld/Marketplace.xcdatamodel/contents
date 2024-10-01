@@ -3,7 +3,7 @@
     <entity name="Marketplace" representedClassName=".Marketplace" syncable="YES">
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="products" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductInfo"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductInfo" inverseName="marketplace" inverseEntity="ProductInfo"/>
     </entity>
     <entity name="Product" representedClassName=".Product" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -14,6 +14,7 @@
     <entity name="ProductInfo" representedClassName=".ProductInfo" syncable="YES">
         <attribute name="remainder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sold" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="marketplace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Marketplace" inverseName="products" inverseEntity="Marketplace"/>
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product"/>
     </entity>
 </model>

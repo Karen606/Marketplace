@@ -31,5 +31,12 @@ extension UIViewController {
     @objc func clickedBack() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func showErrorAlert(message: String) {
+           let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+           let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+           alertController.addAction(okAction)           
+           present(alertController, animated: true, completion: nil)
+       }
 }
 
