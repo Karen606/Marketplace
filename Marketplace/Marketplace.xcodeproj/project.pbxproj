@@ -28,6 +28,21 @@
 		6B0C1D3A2CAC09E400C701D1 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C1D392CAC09E400C701D1 /* SettingsViewController.xib */; };
 		6B0C1D3B2CAC09E400C701D1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D382CAC09E400C701D1 /* SettingsViewController.swift */; };
 		6B0C1D3D2CAC101100C701D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D3C2CAC101100C701D1 /* ViewController.swift */; };
+		6B0C1D422CAC14AD00C701D1 /* MarketplaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D412CAC14AD00C701D1 /* MarketplaceModel.swift */; };
+		6B0C1D452CAC1A1200C701D1 /* MarketplacesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C1D442CAC1A1200C701D1 /* MarketplacesViewController.xib */; };
+		6B0C1D462CAC1A1200C701D1 /* MarketplacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D432CAC1A1200C701D1 /* MarketplacesViewController.swift */; };
+		6B0C1D482CAC1D7500C701D1 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D472CAC1D7500C701D1 /* ShadowView.swift */; };
+		6B0C1D4C2CAC20FD00C701D1 /* MarketplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C1D4B2CAC20FD00C701D1 /* MarketplaceTableViewCell.xib */; };
+		6B0C1D4D2CAC20FD00C701D1 /* MarketplaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D4A2CAC20FD00C701D1 /* MarketplaceTableViewCell.swift */; };
+		6B0C1D4F2CAC220200C701D1 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D4E2CAC220200C701D1 /* PaddingLabel.swift */; };
+		6B0C1D522CAC22A400C701D1 /* MarketplacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D512CAC22A400C701D1 /* MarketplacesViewModel.swift */; };
+		6B0C1D732CAC29EF00C701D1 /* ProductInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D6F2CAC29EF00C701D1 /* ProductInfo+CoreDataClass.swift */; };
+		6B0C1D742CAC29EF00C701D1 /* ProductInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D702CAC29EF00C701D1 /* ProductInfo+CoreDataProperties.swift */; };
+		6B0C1D752CAC29EF00C701D1 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D712CAC29EF00C701D1 /* Product+CoreDataClass.swift */; };
+		6B0C1D762CAC29EF00C701D1 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D722CAC29EF00C701D1 /* Product+CoreDataProperties.swift */; };
+		6B0C1D7D2CAC2B8A00C701D1 /* Marketplace+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D7B2CAC2B8A00C701D1 /* Marketplace+CoreDataClass.swift */; };
+		6B0C1D7E2CAC2B8A00C701D1 /* Marketplace+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D7C2CAC2B8A00C701D1 /* Marketplace+CoreDataProperties.swift */; };
+		6B0C1D812CAC2C1A00C701D1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1D802CAC2C1A00C701D1 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +69,21 @@
 		6B0C1D382CAC09E400C701D1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6B0C1D392CAC09E400C701D1 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		6B0C1D3C2CAC101100C701D1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6B0C1D412CAC14AD00C701D1 /* MarketplaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceModel.swift; sourceTree = "<group>"; };
+		6B0C1D432CAC1A1200C701D1 /* MarketplacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplacesViewController.swift; sourceTree = "<group>"; };
+		6B0C1D442CAC1A1200C701D1 /* MarketplacesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketplacesViewController.xib; sourceTree = "<group>"; };
+		6B0C1D472CAC1D7500C701D1 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		6B0C1D4A2CAC20FD00C701D1 /* MarketplaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceTableViewCell.swift; sourceTree = "<group>"; };
+		6B0C1D4B2CAC20FD00C701D1 /* MarketplaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketplaceTableViewCell.xib; sourceTree = "<group>"; };
+		6B0C1D4E2CAC220200C701D1 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		6B0C1D512CAC22A400C701D1 /* MarketplacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplacesViewModel.swift; sourceTree = "<group>"; };
+		6B0C1D6F2CAC29EF00C701D1 /* ProductInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6B0C1D702CAC29EF00C701D1 /* ProductInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6B0C1D712CAC29EF00C701D1 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6B0C1D722CAC29EF00C701D1 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6B0C1D7B2CAC2B8A00C701D1 /* Marketplace+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Marketplace+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6B0C1D7C2CAC2B8A00C701D1 /* Marketplace+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Marketplace+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6B0C1D802CAC2C1A00C701D1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +116,8 @@
 		6B0C1D052CABFBF200C701D1 /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				6B0C1D7F2CAC2C0000C701D1 /* CoreData */,
+				6B0C1D3E2CAC116300C701D1 /* Marketplaces */,
 				6B0C1D372CAC09D000C701D1 /* Settings */,
 				6B0C1D362CAC09C800C701D1 /* Menu */,
 				6B0C1D062CABFBF200C701D1 /* AppDelegate.swift */,
@@ -105,6 +137,8 @@
 				6B0C1D1E2CABFEAD00C701D1 /* Font */,
 				6B0C1D332CAC073600C701D1 /* UIView.swift */,
 				6B0C1D3C2CAC101100C701D1 /* ViewController.swift */,
+				6B0C1D472CAC1D7500C701D1 /* ShadowView.swift */,
+				6B0C1D4E2CAC220200C701D1 /* PaddingLabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -142,6 +176,65 @@
 				6B0C1D392CAC09E400C701D1 /* SettingsViewController.xib */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		6B0C1D3E2CAC116300C701D1 /* Marketplaces */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1D502CAC228D00C701D1 /* ViewModel */,
+				6B0C1D492CAC20E900C701D1 /* Cell */,
+				6B0C1D402CAC149900C701D1 /* Model */,
+				6B0C1D3F2CAC117800C701D1 /* View */,
+			);
+			path = Marketplaces;
+			sourceTree = "<group>";
+		};
+		6B0C1D3F2CAC117800C701D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1D432CAC1A1200C701D1 /* MarketplacesViewController.swift */,
+				6B0C1D442CAC1A1200C701D1 /* MarketplacesViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B0C1D402CAC149900C701D1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1D412CAC14AD00C701D1 /* MarketplaceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6B0C1D492CAC20E900C701D1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1D4A2CAC20FD00C701D1 /* MarketplaceTableViewCell.swift */,
+				6B0C1D4B2CAC20FD00C701D1 /* MarketplaceTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		6B0C1D502CAC228D00C701D1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1D512CAC22A400C701D1 /* MarketplacesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6B0C1D7F2CAC2C0000C701D1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1D802CAC2C1A00C701D1 /* CoreDataManager.swift */,
+				6B0C1D7B2CAC2B8A00C701D1 /* Marketplace+CoreDataClass.swift */,
+				6B0C1D7C2CAC2B8A00C701D1 /* Marketplace+CoreDataProperties.swift */,
+				6B0C1D6F2CAC29EF00C701D1 /* ProductInfo+CoreDataClass.swift */,
+				6B0C1D702CAC29EF00C701D1 /* ProductInfo+CoreDataProperties.swift */,
+				6B0C1D712CAC29EF00C701D1 /* Product+CoreDataClass.swift */,
+				6B0C1D722CAC29EF00C701D1 /* Product+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,10 +303,12 @@
 				6B0C1D2D2CABFF3B00C701D1 /* SFProText-SemiboldItalic.ttf in Resources */,
 				6B0C1D302CABFF3B00C701D1 /* SFProText-MediumItalic.ttf in Resources */,
 				6B0C1D0E2CABFBF200C701D1 /* Base in Resources */,
+				6B0C1D452CAC1A1200C701D1 /* MarketplacesViewController.xib in Resources */,
 				6B0C1D2F2CABFF3B00C701D1 /* SFProText-Regular.ttf in Resources */,
 				6B0C1D2B2CABFF3B00C701D1 /* SFProText-Light.ttf in Resources */,
 				6B0C1D282CABFF3B00C701D1 /* SFProText-Bold.ttf in Resources */,
 				6B0C1D2A2CABFF3B00C701D1 /* SFProText-Semibold.ttf in Resources */,
+				6B0C1D4C2CAC20FD00C701D1 /* MarketplaceTableViewCell.xib in Resources */,
 				6B0C1D2E2CABFF3B00C701D1 /* SFProText-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,12 +320,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0C1D522CAC22A400C701D1 /* MarketplacesViewModel.swift in Sources */,
 				6B0C1D0B2CABFBF200C701D1 /* MenuViewController.swift in Sources */,
+				6B0C1D732CAC29EF00C701D1 /* ProductInfo+CoreDataClass.swift in Sources */,
+				6B0C1D742CAC29EF00C701D1 /* ProductInfo+CoreDataProperties.swift in Sources */,
+				6B0C1D752CAC29EF00C701D1 /* Product+CoreDataClass.swift in Sources */,
+				6B0C1D762CAC29EF00C701D1 /* Product+CoreDataProperties.swift in Sources */,
+				6B0C1D482CAC1D7500C701D1 /* ShadowView.swift in Sources */,
 				6B0C1D112CABFBF200C701D1 /* Marketplace.xcdatamodeld in Sources */,
+				6B0C1D422CAC14AD00C701D1 /* MarketplaceModel.swift in Sources */,
 				6B0C1D3B2CAC09E400C701D1 /* SettingsViewController.swift in Sources */,
+				6B0C1D4D2CAC20FD00C701D1 /* MarketplaceTableViewCell.swift in Sources */,
 				6B0C1D322CAC007600C701D1 /* Font.swift in Sources */,
+				6B0C1D812CAC2C1A00C701D1 /* CoreDataManager.swift in Sources */,
 				6B0C1D072CABFBF200C701D1 /* AppDelegate.swift in Sources */,
+				6B0C1D462CAC1A1200C701D1 /* MarketplacesViewController.swift in Sources */,
 				6B0C1D342CAC073600C701D1 /* UIView.swift in Sources */,
+				6B0C1D4F2CAC220200C701D1 /* PaddingLabel.swift in Sources */,
+				6B0C1D7D2CAC2B8A00C701D1 /* Marketplace+CoreDataClass.swift in Sources */,
+				6B0C1D7E2CAC2B8A00C701D1 /* Marketplace+CoreDataProperties.swift in Sources */,
 				6B0C1D3D2CAC101100C701D1 /* ViewController.swift in Sources */,
 				6B0C1D092CABFBF200C701D1 /* SceneDelegate.swift in Sources */,
 			);

@@ -26,6 +26,8 @@ class MenuViewController: UIViewController {
     }
 
     @IBAction func clickedProductManagment(_ sender: UIButton) {
+        let marketplaceVC = MarketplacesViewController(nibName: "MarketplacesViewController", bundle: nil)
+        self.navigationController?.pushViewController(marketplaceVC, animated: true)
     }
     
     @IBAction func clickedOrderManagment(_ sender: UIButton) {

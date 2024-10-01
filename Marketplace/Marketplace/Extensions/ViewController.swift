@@ -17,7 +17,7 @@ extension UIViewController {
     
     func setNavigationMenuButton() {
         let menuButton = UIButton(type: .custom)
-        menuButton.setImage(UIImage(named: "Menu"), for: .normal)
+        menuButton.setImage(UIImage(named: "User"), for: .normal)
         menuButton.addTarget(self, action: #selector(clickedMenu), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
     }
