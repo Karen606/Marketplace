@@ -36,26 +36,26 @@
                                 <rect key="frame" x="35" y="103" width="323" height="280"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="MvA-lI-LCW">
-                                <rect key="frame" x="24" y="448" width="345" height="346"/>
+                                <rect key="frame" x="24" y="447" width="345" height="347"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="R4Q-bF-un3">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="161"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="161.33333333333334"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTx-VT-ckA">
-                                                <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="161"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="161.33333333333334"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzg-Aq-zTk">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="161"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="161.33333333333334"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <connections>
                                                             <action selector="clickedProductManagment:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EhM-hB-uov"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="Product" translatesAutoresizingMaskIntoConstraints="NO" id="Rtq-hW-5JI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="89"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="89.333333333333329"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Product Management" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGc-Wu-ukI">
-                                                        <rect key="frame" x="8" y="107" width="144.66666666666666" height="42"/>
+                                                        <rect key="frame" x="8" y="107.33333333333337" width="144.66666666666666" height="42"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -71,26 +71,27 @@
                                                     <constraint firstItem="Rtq-hW-5JI" firstAttribute="leading" secondItem="BTx-VT-ckA" secondAttribute="leading" id="M4V-cA-Kdo"/>
                                                     <constraint firstAttribute="bottom" secondItem="wzg-Aq-zTk" secondAttribute="bottom" id="YCe-W2-rHd"/>
                                                     <constraint firstAttribute="bottom" secondItem="OGc-Wu-ukI" secondAttribute="bottom" constant="12" id="bZ0-Qk-sVU"/>
+                                                    <constraint firstAttribute="width" secondItem="BTx-VT-ckA" secondAttribute="height" multiplier="160:161" id="bk4-PN-8gw"/>
                                                     <constraint firstAttribute="trailing" secondItem="Rtq-hW-5JI" secondAttribute="trailing" id="cCC-ck-AoH"/>
                                                     <constraint firstItem="Rtq-hW-5JI" firstAttribute="top" secondItem="BTx-VT-ckA" secondAttribute="top" id="hJX-q1-Z1i"/>
                                                     <constraint firstItem="wzg-Aq-zTk" firstAttribute="leading" secondItem="BTx-VT-ckA" secondAttribute="leading" id="w2n-Eq-Uj3"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ox-lE-ydf">
-                                                <rect key="frame" x="184.66666666666663" y="0.0" width="160.33333333333337" height="161"/>
+                                                <rect key="frame" x="184.66666666666663" y="0.0" width="160.33333333333337" height="161.33333333333334"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAW-Rb-HQs">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="161"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="161.33333333333334"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <connections>
                                                             <action selector="clickedOrderManagment:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ykV-GD-xT8"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="Order" translatesAutoresizingMaskIntoConstraints="NO" id="Pqe-SG-eMf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="91.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="91.666666666666671"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" text="Order Management" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8f-Ln-v8L">
-                                                        <rect key="frame" x="8" y="109.33333333333339" width="144.33333333333334" height="39.666666666666671"/>
+                                                        <rect key="frame" x="8" y="109.66666666666664" width="144.33333333333334" height="39.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -101,6 +102,7 @@
                                                     <constraint firstItem="Pqe-SG-eMf" firstAttribute="leading" secondItem="9Ox-lE-ydf" secondAttribute="leading" id="6jy-IQ-VqQ"/>
                                                     <constraint firstItem="J8f-Ln-v8L" firstAttribute="leading" secondItem="9Ox-lE-ydf" secondAttribute="leading" constant="8" id="Bkn-7w-s1b"/>
                                                     <constraint firstItem="MAW-Rb-HQs" firstAttribute="leading" secondItem="9Ox-lE-ydf" secondAttribute="leading" id="EOz-X3-bVF"/>
+                                                    <constraint firstAttribute="width" secondItem="9Ox-lE-ydf" secondAttribute="height" multiplier="160:161" id="FZk-S2-Bia"/>
                                                     <constraint firstAttribute="trailing" secondItem="J8f-Ln-v8L" secondAttribute="trailing" constant="8" id="KQL-Np-Ina"/>
                                                     <constraint firstAttribute="trailing" secondItem="Pqe-SG-eMf" secondAttribute="trailing" id="Rih-YP-d4a"/>
                                                     <constraint firstItem="J8f-Ln-v8L" firstAttribute="top" secondItem="Pqe-SG-eMf" secondAttribute="bottom" constant="18" id="bkG-dY-M0e"/>
@@ -114,23 +116,23 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="yML-PH-ZgF">
-                                        <rect key="frame" x="0.0" y="185" width="345" height="161"/>
+                                        <rect key="frame" x="0.0" y="185.33333333333337" width="345" height="161.66666666666663"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jWh-8s-qbG">
-                                                <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="161"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="161.66666666666666"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2V-MD-stf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="161"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="161.66666666666666"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <connections>
                                                             <action selector="clickedAnalytics:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lUx-fP-rVk"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="Analytics" translatesAutoresizingMaskIntoConstraints="NO" id="roe-5U-gFX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="91.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="92"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analytics and reports" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ua6-Kb-zMH">
-                                                        <rect key="frame" x="8" y="109.33333333333339" width="144.66666666666666" height="39.666666666666671"/>
+                                                        <rect key="frame" x="8" y="110.00000000000001" width="144.66666666666666" height="39.666666666666671"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -147,25 +149,26 @@
                                                     <constraint firstItem="Ua6-Kb-zMH" firstAttribute="top" secondItem="roe-5U-gFX" secondAttribute="bottom" constant="18" id="SSi-j9-5wY"/>
                                                     <constraint firstAttribute="trailing" secondItem="roe-5U-gFX" secondAttribute="trailing" id="ffF-hC-6ct"/>
                                                     <constraint firstAttribute="bottom" secondItem="I2V-MD-stf" secondAttribute="bottom" id="sGY-W8-vBP"/>
+                                                    <constraint firstAttribute="width" secondItem="jWh-8s-qbG" secondAttribute="height" multiplier="160:161" id="wjg-W3-Pij"/>
                                                     <constraint firstItem="I2V-MD-stf" firstAttribute="top" secondItem="jWh-8s-qbG" secondAttribute="top" id="yuP-tv-kXd"/>
                                                     <constraint firstItem="roe-5U-gFX" firstAttribute="top" secondItem="jWh-8s-qbG" secondAttribute="top" id="zGE-N9-ALm"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppP-pq-dz0">
-                                                <rect key="frame" x="184.66666666666663" y="0.0" width="160.33333333333337" height="161"/>
+                                                <rect key="frame" x="184.66666666666663" y="0.0" width="160.33333333333337" height="161.66666666666666"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgF-I5-UY1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="161"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="161.66666666666666"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <connections>
                                                             <action selector="clickedSettings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nWH-9v-jKD"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="zKo-aj-PQD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="111"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160.33333333333334" height="111.66666666666667"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP1-qK-tBg">
-                                                        <rect key="frame" x="8" y="129" width="144.33333333333334" height="20"/>
+                                                        <rect key="frame" x="8" y="129.66666666666663" width="144.33333333333334" height="20"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -175,6 +178,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="zKo-aj-PQD" secondAttribute="trailing" id="AHy-ef-ysT"/>
                                                     <constraint firstItem="QP1-qK-tBg" firstAttribute="top" secondItem="zKo-aj-PQD" secondAttribute="bottom" constant="18" id="Do6-Wj-WfE"/>
+                                                    <constraint firstAttribute="width" secondItem="ppP-pq-dz0" secondAttribute="height" multiplier="160:161" id="Ify-fN-QXj"/>
                                                     <constraint firstItem="fgF-I5-UY1" firstAttribute="top" secondItem="ppP-pq-dz0" secondAttribute="top" id="JN0-rH-eSD"/>
                                                     <constraint firstItem="zKo-aj-PQD" firstAttribute="top" secondItem="ppP-pq-dz0" secondAttribute="top" id="KoG-wm-FkI"/>
                                                     <constraint firstItem="zKo-aj-PQD" firstAttribute="leading" secondItem="ppP-pq-dz0" secondAttribute="leading" id="Ry4-aR-02k"/>
