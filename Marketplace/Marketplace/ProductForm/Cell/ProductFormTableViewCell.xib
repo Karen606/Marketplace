@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,24 +35,36 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </textField>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="leR-5a-OWI" customClass="BaseTextField" customModule="Marketplace" customModuleProvider="target">
-                        <rect key="frame" x="181" y="1" width="123" height="26"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Re5-dy-dyi">
+                        <rect key="frame" x="179" y="1" width="132" height="25"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="leR-5a-OWI" customClass="BaseTextField" customModule="Marketplace" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="-1" width="132" height="26"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="JW3-am-Plb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="26" id="JW3-am-Plb"/>
+                            <constraint firstAttribute="trailing" secondItem="leR-5a-OWI" secondAttribute="trailing" id="8I3-qe-RpK"/>
+                            <constraint firstAttribute="height" constant="25" id="BEB-gC-wle"/>
+                            <constraint firstItem="leR-5a-OWI" firstAttribute="leading" secondItem="Re5-dy-dyi" secondAttribute="leading" id="Z8J-Id-8Fl"/>
+                            <constraint firstItem="leR-5a-OWI" firstAttribute="top" secondItem="Re5-dy-dyi" secondAttribute="top" constant="-1" id="r5B-Vz-5F8"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="rnz-RN-FTw" secondAttribute="bottom" constant="16" id="1Os-E7-fAl"/>
                     <constraint firstItem="rnz-RN-FTw" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.5" id="2PH-xM-iqb"/>
-                    <constraint firstItem="leR-5a-OWI" firstAttribute="leading" secondItem="rnz-RN-FTw" secondAttribute="trailing" constant="14" id="2kp-s2-ekb"/>
                     <constraint firstItem="rnz-RN-FTw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="3h4-ss-Msi"/>
-                    <constraint firstItem="leR-5a-OWI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="9A9-Tb-0AS"/>
-                    <constraint firstAttribute="trailing" secondItem="leR-5a-OWI" secondAttribute="trailing" constant="16" id="iIE-ah-nEz"/>
+                    <constraint firstAttribute="trailing" secondItem="Re5-dy-dyi" secondAttribute="trailing" constant="9" id="Fnw-0e-y1S"/>
+                    <constraint firstItem="Re5-dy-dyi" firstAttribute="leading" secondItem="rnz-RN-FTw" secondAttribute="trailing" constant="12" id="nOb-ac-a9U"/>
                     <constraint firstItem="rnz-RN-FTw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="pbF-On-mbJ"/>
+                    <constraint firstItem="Re5-dy-dyi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="vQf-g5-xkR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -62,4 +75,9 @@
             <point key="canvasLocation" x="62.595419847328245" y="19.366197183098592"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

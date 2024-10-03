@@ -14,13 +14,17 @@ class ProductFormTableViewCell: UITableViewCell {
     @IBOutlet weak var quantityTextField: BaseTextField!
     private let tapGesture = UITapGestureRecognizer()
     private var index: Int = 0
-    private var id: UUID?
+    private var id: UUID? {
+        didSet {
+            quantityTextField.isEnabled = id != nil
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         marketplaceDropDown.layer.cornerRadius = 5
-        marketplaceDropDown.layer.borderWidth = 0.5
+        marketplaceDropDown.layer.borderWidth = 1
         marketplaceDropDown.layer.borderColor = UIColor.black.cgColor
         marketplaceDropDown.selectedRowColor = .clear
         marketplaceDropDown.checkMarkEnabled = false
@@ -73,7 +77,11 @@ extension ProductFormTableViewCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let id = self.id else { return }
         if let value = textField.text {
-            ProductFormViewModel.shared.setRemainder(id: id, remainder: Int(value))
+            if !ProductFormViewModel.shared.setRemainder(id: id, remainder: Int(value)) {
+                quantityTextField.showError(error: "not enough stock")
+            } else {
+                quantityTextField.showError(error: nil)
+            }
         }
     }
 }

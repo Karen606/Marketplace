@@ -12,7 +12,7 @@ import PhotosUI
 class ProductFormViewController: UIViewController {
     @IBOutlet weak var nameTextField: BaseTextField!
     @IBOutlet weak var quantityTextField: BaseTextField!
-    @IBOutlet weak var priceTextField: PriceTextField!
+    @IBOutlet weak var priceTextField: PricesTextField!
     @IBOutlet weak var marketplacesTableView: UITableView!
     @IBOutlet weak var tableViewHeightConst: NSLayoutConstraint!
     @IBOutlet weak var cancelButton: UIButton!
@@ -22,6 +22,11 @@ class ProductFormViewController: UIViewController {
     private let viewModel = ProductFormViewModel.shared
     private var cancellables: Set<AnyCancellable> = []
     @IBOutlet weak var photoButton: UIButton!
+    var completion: (() -> ())?
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,10 +93,27 @@ class ProductFormViewController: UIViewController {
                 self.validate()
             }
             .store(in: &cancellables)
+        
+        viewModel.$isEditing
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isEditing in
+                guard let self = self else { return }
+                if isEditing {
+                    self.nameTextField.text = viewModel.product.name
+                    self.priceTextField.text = "\(viewModel.product.price ?? 0)$"
+                    self.quantityTextField.text = "\(viewModel.product.quantity ?? 0)"
+                    if let data = viewModel.product.photo {
+                        self.photoButton.setImage(UIImage(data: data), for: .normal)
+                    }
+                    self.marketplacesTableView.reloadData()
+                }
+                self.validate()
+            }
+            .store(in: &cancellables)
     }
     
     func validate() {
-        let validProduct = (viewModel.product.name?.isValid ?? false) && viewModel.product.id != nil && viewModel.product.photo != nil && viewModel.product.price != nil && viewModel.product.quantity != nil
+        let validProduct = (viewModel.product.name?.isValid ?? false) && viewModel.product.id != nil && viewModel.product.photo != nil && viewModel.product.price != nil && priceTextField.isValidPrice() && viewModel.product.quantity != nil
         let validMarketplace = viewModel.selectedMarketplaces.contains { model in
             return (model.id == nil || !(model.name?.isValid ?? false) || model.product?.remainder == nil)
         }
@@ -100,6 +122,9 @@ class ProductFormViewController: UIViewController {
     
     @objc func clickedAddProductToMarketplace() {
         viewModel.addMarketplace()
+    }
+    @IBAction func handleTapGesture(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
     
     @IBAction func chooseProductPhoto(_ sender: UIButton) {
@@ -126,7 +151,8 @@ class ProductFormViewController: UIViewController {
             if let error = error {
                 self.showErrorAlert(message: error.localizedDescription)
             } else {
-                ProductsViewModel.shared.fecthMarketplaces()
+                completion?()
+//                ProductsViewModel.shared.fecthMarketplaces()
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -146,7 +172,7 @@ extension ProductFormViewController: PriceTextFielddDelegate {
         guard let value = textField.text else { return }
         switch textField {
         case priceTextField:
-            viewModel.product.price = Double(value)
+            viewModel.product.price = priceTextField.formatNumber()
         case nameTextField:
             viewModel.product.name = value
         case quantityTextField:
@@ -156,12 +182,28 @@ extension ProductFormViewController: PriceTextFielddDelegate {
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        return
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == priceTextField, let value = textField.text, !value.isEmpty {
+            priceTextField.text! += "$"
+        }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        return
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == priceTextField, let value = textField.text, !value.isEmpty && value.last == "$" {
+            priceTextField.text?.removeLast()
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == priceTextField {
+            return priceTextField.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else {
+            return true
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
     }
 }
 
@@ -186,11 +228,9 @@ extension ProductFormViewController: UITableViewDelegate, UITableViewDataSource 
         let button = UIButton(type: .custom)
         button.imageView?.contentMode = .center
         button.setImage(UIImage(named: "Add"), for: .normal)
-        button.setTitle("Add", for: .normal)
-        button.titleLabel?.font = .bold(size: 20)
         button.setTitleColor(.baseBlue, for: .normal)
         button.addTarget(self, action: #selector(clickedAddProductToMarketplace), for: .touchUpInside)
-        button.frame = CGRect(x: (footerView.frame.width - 120) / 4, y: (footerView.frame.height - 30) / 2, width: 120, height: 30)
+        button.frame = CGRect(x: (footerView.frame.width/4) - 33, y: (footerView.frame.height - 30) / 2, width: 80, height: 30)
         footerView.addSubview(button)
         return footerView
     }

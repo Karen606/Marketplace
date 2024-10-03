@@ -9,9 +9,9 @@ import Foundation
 
 class ProductsViewModel {
     static let shared = ProductsViewModel()
-    @Published var marketplaces: [Marketplace] = []
-    @Published var products: [ProductInfo] = []
-    var selectedMarketplace: Marketplace?
+    @Published var marketplaces: [MarketplaceModel] = []
+    @Published var products: [ProductInfoModel] = []
+    var selectedMarketplace: MarketplaceModel?
     
     
     private init() {}
@@ -20,17 +20,16 @@ class ProductsViewModel {
         CoreDataManager.shared.fetchMarketplaces { [weak self] marketplaces, error in
             guard let self = self else { return }
             self.marketplaces = marketplaces
-            if let productsInfo = selectedMarketplace?.products as? Set<ProductInfo> {
-                self.products = Array(productsInfo)
+            if let selectedMarketplace = selectedMarketplace {
+                self.selectedMarketplace = marketplaces.first(where: { $0.id == selectedMarketplace.id })
             }
+            self.products = (selectedMarketplace?.products ?? []).sorted(by: { $0.product?.name ?? "" < $1.product?.name ?? ""})
         }
     }
     
-    func chooseMarketplace(marketplace: Marketplace) {
+    func chooseMarketplace(marketplace: MarketplaceModel) {
         self.selectedMarketplace = marketplace
-        if let productsInfo = marketplace.products as? Set<ProductInfo> {
-            self.products = Array(productsInfo)
-        }
+        self.products = marketplace.products
     }
     
     func clear() {

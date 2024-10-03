@@ -9,8 +9,8 @@ import Foundation
 
 class MarketplacesViewModel {
     static let shared = MarketplacesViewModel()
-    var marketplaces: [Marketplace] = []
-    @Published var filteredMarketplaces: [Marketplace] = []
+    var marketplaces: [MarketplaceModel] = []
+    @Published var filteredMarketplaces: [MarketplaceModel] = []
     var search: String?
     
     private init() {}
@@ -34,7 +34,7 @@ class MarketplacesViewModel {
     func filter(by value: String?) {
         self.search = value
         if let value = value, !value.isEmpty {
-            filteredMarketplaces = marketplaces.filter { ($0.name).localizedCaseInsensitiveContains(value) }
+            filteredMarketplaces = marketplaces.filter { ($0.name)?.localizedCaseInsensitiveContains(value) ?? false }
         } else {
             filteredMarketplaces = marketplaces
         }

@@ -23,6 +23,10 @@ class ProductsViewController: UIViewController {
         viewModel.fecthMarketplaces()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.fecthMarketplaces()
+    }
+    
     func setupUI() {
         setNavigationBackButton()
         setNavigationMenuButton()
@@ -45,7 +49,7 @@ class ProductsViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] marketplaces in
                 guard let self = self else { return }
-                let array = marketplaces.map({ $0.name })
+                let array = marketplaces.map({ $0.name ?? "" })
                 self.dropDownTextField.optionArray = array
             }
             .store(in: &cancellables)
@@ -67,6 +71,11 @@ class ProductsViewController: UIViewController {
             marketplacesModel.append(marketplaceModel)
         }
         ProductFormViewModel.shared.marketPlaces = marketplacesModel
+        productFormVC.completion = { [weak self] in
+            if let self = self {
+                self.viewModel.fecthMarketplaces()
+            }
+        }
         self.navigationController?.pushViewController(productFormVC, animated: true)
     }
     

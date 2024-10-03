@@ -27,6 +27,8 @@ class ProductViewController: UIViewController {
     }
     
     func setupUI() {
+        setNavigationBackButton()
+        setNavigationMenuButton()
         nameLabel.font = .medium(size: 16)
         infoLabels.forEach({ $0.font = .regular(size: 14) })
         marketplacesTableView.delegate = self
@@ -39,11 +41,11 @@ class ProductViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] marketplaces in
                 guard let self = self, !marketplaces.isEmpty else { return }
-                let product = marketplaces[0].products?.first
+                let product = marketplaces[0].products.first
                 let marketplaces = self.viewModel.marketplaces.compactMap { $0.name }.joined(separator: ", ")
                 self.nameLabel.text = product?.product?.name
                 self.infoLabels[0].text = "Price: \(product?.product?.price ?? 0)$"
-                self.infoLabels[1].text = "Earnings:"
+                self.infoLabels[1].text = "Earnings: \(self.viewModel.calculateEarnings())"
                 self.infoLabels[2].text = "On sale at: \(marketplaces)"
                 self.infoLabels[3].text = "Remainder: \(product?.remainder ?? 0)"
                 if let data = product?.product?.photo {
@@ -51,6 +53,7 @@ class ProductViewController: UIViewController {
                 } else {
                     self.imageView.image = nil
                 }
+                self.marketplacesTableView.reloadData()
             }
             .store(in: &cancellables)
     }
@@ -71,6 +74,26 @@ class ProductViewController: UIViewController {
     }
     
     @IBAction func clickedEdit(_ sender: UIButton) {
+        let productFormVC = ProductFormViewController(nibName: "ProductFormViewController", bundle: nil)
+        var marketplacesModel: [MarketplaceModel] = []
+        for marketplace in MarketplacesViewModel.shared.marketplaces {
+            let marketplaceModel = MarketplaceModel(id: marketplace.id, name: marketplace.name)
+            marketplacesModel.append(marketplaceModel)
+        }
+        
+        ProductFormViewModel.shared.marketPlaces = marketplacesModel
+        if !viewModel.marketplaces.isEmpty, let product = viewModel.marketplaces.first?.products.first?.product {
+            ProductFormViewModel.shared.product = ProductModel(id: product.id, name: product.name, price: product.price, quantity: Int(product.quantity ?? 0), photo: product.photo)
+        }
+        ProductFormViewModel.shared.fetchMarketplaces()
+        ProductFormViewModel.shared.isEditing = true
+        ProductFormViewModel.shared.selectedMarketplaces = viewModel.selectedMarketplaces
+        productFormVC.completion = { [weak self] in
+            if let self = self {
+                self.viewModel.fetchMarketplaces()
+            }
+        }
+        self.navigationController?.pushViewController(productFormVC, animated: true)
     }
     
     deinit {

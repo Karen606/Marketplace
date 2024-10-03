@@ -55,9 +55,9 @@
                                                         <constraint firstAttribute="height" constant="26" id="MMA-sA-xDc"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SBF-kD-4Lv" customClass="PriceTextField" customModule="Marketplace" customModuleProvider="target">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SBF-kD-4Lv" customClass="PricesTextField" customModule="Marketplace" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="91" width="129" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="OfX-0U-aiS"/>
@@ -138,7 +138,7 @@
                                             <color key="textColor" red="0.29411764705882354" green="0.29019607843137252" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery to warehouse " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHf-df-WMS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery to warehouse " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHf-df-WMS">
                                             <rect key="frame" x="175" y="146.66666666666666" width="147" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.29411764709999999" green="0.2901960784" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -174,12 +174,16 @@
                                 </view>
                             </subviews>
                             <color key="backgroundColor" name="Background"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="JZ0-Bk-G2y" secondAttribute="bottom" constant="24" id="DAz-rs-P9T"/>
                                 <constraint firstItem="JZ0-Bk-G2y" firstAttribute="top" secondItem="dhi-P5-fNS" secondAttribute="top" constant="4" id="PJK-m6-g0K"/>
                                 <constraint firstAttribute="trailing" secondItem="JZ0-Bk-G2y" secondAttribute="trailing" constant="26" id="USl-iW-hEX"/>
                                 <constraint firstItem="JZ0-Bk-G2y" firstAttribute="leading" secondItem="dhi-P5-fNS" secondAttribute="leading" constant="26" id="zRQ-2l-8gq"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="2mv-De-iZ1" appends="YES" id="a6s-Kj-ldp"/>
+                            </connections>
                         </view>
                     </subviews>
                     <constraints>
@@ -202,6 +206,11 @@
             </constraints>
             <point key="canvasLocation" x="61.832061068702288" y="19.718309859154932"/>
         </view>
+        <tapGestureRecognizer id="2mv-De-iZ1">
+            <connections>
+                <action selector="handleTapGesture:" destination="-1" id="JnU-Lx-LYB"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="ImagePlaceholder" width="100" height="100"/>

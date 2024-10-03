@@ -68,7 +68,7 @@ class CoreDataManager {
 //        
 //    }
     
-    func fetchMarketplaces(completion: @escaping ([Marketplace], Error?) -> Void) {
+    func fetchMarketplaces(completion: @escaping ([MarketplaceModel], Error?) -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {
             let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
@@ -90,7 +90,20 @@ class CoreDataManager {
                             marketplacesOnMainThread.append(marketplace)
                         }
                     }
-                    completion(marketplacesOnMainThread, nil) // Call completion on the main thread
+                    
+                    var marketplacesModel: [MarketplaceModel] = []
+//                    var productsInfoModel: [ProductInfoModel] = []
+                    for marketplace in marketplacesOnMainThread {
+                        var productsInfoModel: [ProductInfoModel] = []
+                        for productInfo in marketplace.products ?? [] {
+                            let infoModel = ProductInfoModel(product: ProductModel(id: productInfo.product?.id, name: productInfo.product?.name, price: productInfo.product?.price, quantity: Int(productInfo.product?.quantity ?? 0), photo: productInfo.product?.photo), remainder: Int(productInfo.remainder), sold: Int(productInfo.sold))
+                            productsInfoModel.append(infoModel)
+                        }
+                        let marketplaceModel = MarketplaceModel(id: marketplace.id, name: marketplace.name, products: productsInfoModel)
+                        marketplacesModel.append(marketplaceModel)
+                    }
+                    
+                    completion(marketplacesModel, nil) // Call completion on the main thread
                 }
                 
             } catch {
@@ -211,6 +224,75 @@ class CoreDataManager {
         }
     }
     
+    func save(marketplaces: [MarketplaceInfoModel], completion: @escaping (Error?) -> Void) {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.perform {
+            let marketplaceIDs = marketplaces.map { $0.id }
+            let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id IN %@", marketplaceIDs)
+            
+            do {
+                let fetchedMarketplaces = try backgroundContext.fetch(fetchRequest)
+                
+                for entry in marketplaces {
+                    // Fetch or create ProductInfo
+                    if let marketplace = fetchedMarketplaces.first(where: { $0.id == entry.id }) {
+                        var productInfo: ProductInfo?
+
+                        if let products = marketplace.products, let existingProductInfo = products.first(where: { ($0 as! ProductInfo).product?.id == entry.product?.product?.id }) as? ProductInfo {
+                            // Existing product info, update it
+                            productInfo = existingProductInfo
+                            productInfo?.remainder = Int32(entry.product?.remainder ?? 0)
+                            productInfo?.sold = Int32(entry.product?.sold ?? 0)
+                            productInfo?.product?.name = entry.product?.product?.name
+                            productInfo?.product?.price = entry.product?.product?.price ?? 0
+                            productInfo?.product?.quantity = Int32(entry.product?.product?.quantity ?? 0)
+                            productInfo?.product?.photo = entry.product?.product?.photo
+                        } else {
+                            // Create new ProductInfo and Product
+                            productInfo = ProductInfo(context: backgroundContext)
+                            productInfo?.remainder = Int32(entry.product?.remainder ?? 0)
+                            productInfo?.sold = Int32(entry.product?.sold ?? 0)
+                            
+                            let newProduct = Product(context: backgroundContext)
+                            newProduct.id = entry.product?.product?.id
+                            newProduct.name = entry.product?.product?.name
+                            newProduct.price = entry.product?.product?.price ?? 0
+                            newProduct.quantity = Int32(entry.product?.product?.quantity ?? 0)
+                            newProduct.photo = entry.product?.product?.photo
+                            productInfo?.product = newProduct
+                            
+                            // Append to marketplace's products
+                            var array: [ProductInfo] = []
+                            if let existingProducts = marketplace.products {
+                                array = Array(existingProducts )
+                            }
+                            array.append(productInfo!)
+                            marketplace.products = NSSet(array: array) as! Set<ProductInfo>
+                        }
+                    }
+                }
+                
+                // Save the context
+                do {
+                    try backgroundContext.save()
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(error)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+        }
+    }
+
+    
     func fetchMarketplacesByProductID(id: UUID, completion: @escaping ([Marketplace], Error?) -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {
@@ -229,196 +311,65 @@ class CoreDataManager {
             }
         }
     }
-
     
-//    func saveRecord(recordModel: RecordModel?, completion: @escaping (Error?) -> Void) {
-//        let id = recordModel?.id ?? UUID()
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Record> = Record.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-//
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                let record: Record
-//
-//                if let existingMaterial = results.first {
-//                    record = existingMaterial
-//                } else {
-//                    record = Record(context: backgroundContext)
-//                    record.id = id
-//                }
-//                record.name = recordModel?.name
-//                record.email = recordModel?.email
-//                record.phone = recordModel?.phoneNumber
-//                record.typeOfManicure = recordModel?.type
-//                record.designAndColor = recordModel?.design
-//                record.date = recordModel?.date
-//                record.time = recordModel?.time
-//                try backgroundContext.save()
-//                completion(nil)
-//            } catch {
-//                completion(error)
-//            }
-//        }
-//    }
-//    
-//    func removeRecord(id: UUID, completion: @escaping (Error?) -> Void) {
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Record> = Record.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-//
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                if let recordToDelete = results.first {
-//                    backgroundContext.delete(recordToDelete)
-//                    try backgroundContext.save()
-//                    completion(nil)
-//                } else {
-//                    let error = NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "Record not found"])
-//                    completion(error)
-//                }
-//            } catch {
-//                completion(error)
-//            }
-//        }
-//    }
-//    
-//    func fetchDesigns(completion: @escaping ([DesignModel], Error?) -> Void) {
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Design> = Design.fetchRequest()
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                var designModels: [DesignModel] = []
-//                for result in results {
-//                    let designModel = DesignModel(id: result.id, photo: result.photo, title: result.title)
-//                    designModels.append(designModel)
-//                }
-//                completion(designModels, nil)
-//            } catch {
-//                completion([], error)
-//            }
-//        }
-//    }
-//    
-//    func saveDesign(designModel: DesignModel?, completion: @escaping (Error?) -> Void) {
-//        let id = designModel?.id ?? UUID()
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Design> = Design.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-//
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                let design: Design
-//
-//                if let existingMaterial = results.first {
-//                    design = existingMaterial
-//                } else {
-//                    design = Design(context: backgroundContext)
-//                    design.id = id
-//                }
-//                design.photo = designModel?.photo
-//                design.title = designModel?.title
-//                try backgroundContext.save()
-//                completion(nil)
-//            } catch {
-//                completion(error)
-//            }
-//        }
-//    }
-//    
-//    func fetchMaterials(completion: @escaping ([MaterialModel], Error?) -> Void) {
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Material> = Material.fetchRequest()
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                var materialModels: [MaterialModel] = []
-//                for result in results {
-//                    let materialModel = MaterialModel(id: result.id, photo: result.photo, title: result.title, count: result.count)
-//                    materialModels.append(materialModel)
-//                }
-//                completion(materialModels, nil)
-//            } catch {
-//                completion([], error)
-//            }
-//        }
-//    }
-//    
-//    func saveMaterial(materialModel: MaterialModel?, completion: @escaping (Error?) -> Void) {
-//        let id = materialModel?.id ?? UUID()
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Material> = Material.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-//
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                let material: Material
-//
-//                if let existingMaterial = results.first {
-//                    material = existingMaterial
-//                } else {
-//                    material = Material(context: backgroundContext)
-//                    material.id = id
-//                }
-//                material.photo = materialModel?.photo
-//                material.title = materialModel?.title
-//                material.count = materialModel?.count ?? 1
-//                try backgroundContext.save()
-//                completion(nil)
-//            } catch {
-//                completion(error)
-//            }
-//        }
-//    }
-//    
-//    func incrementMaterialCount(by id: UUID, completion: @escaping (Error?) -> Void) {
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Material> = Material.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-//
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                if let material = results.first {
-//                    material.count += 1
-//                    try backgroundContext.save()
-//                    completion(nil)
-//                } else {
-//                    completion(NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "Material not found"]))
-//                }
-//            } catch {
-//                completion(error)
-//            }
-//        }
-//    }
-//
-//    func decrementMaterialCount(by id: UUID, completion: @escaping (Error?) -> Void) {
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Material> = Material.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-//
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                if let material = results.first {
-//                    if material.count > 0 {
-//                        material.count -= 1
-//                        try backgroundContext.save()
-//                        completion(nil)
-//                    } else {
-//                        completion(NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: "Material count is already zero"]))
-//                    }
-//                } else {
-//                    completion(NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "Material not found"]))
-//                }
-//            } catch {
-//                completion(error)
-//            }
-//        }
-//    }
+    func saleProduct(productID: UUID, marketplaceID: UUID, completion: @escaping (Error?) -> Void) {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.perform {
+            // Fetch the Marketplace by ID
+            let marketplaceFetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
+            marketplaceFetchRequest.predicate = NSPredicate(format: "id == %@", marketplaceID as CVarArg)
+            
+            do {
+                let fetchedMarketplaces = try backgroundContext.fetch(marketplaceFetchRequest)
+                guard let marketplace = fetchedMarketplaces.first else {
+                    // Marketplace not found
+                    DispatchQueue.main.async {
+                        completion(NSError(domain: "MarketplaceNotFound", code: 404, userInfo: nil))
+                    }
+                    return
+                }
+                
+                // Find the ProductInfo in the marketplace by productID
+                if let productInfo = marketplace.products?.first(where: { ($0 as! ProductInfo).product?.id == productID }) as? ProductInfo,
+                   let product = productInfo.product {
+                    
+                    // Check if the product has enough quantity
+                    if product.quantity > 0 && productInfo.remainder > 0 {
+                        // Decrease quantity and remainder by 1
+                        product.quantity -= 1
+                        productInfo.remainder -= 1
+                        
+                        // Increase sold by 1
+                        productInfo.sold += 1
+                        
+                        // Save the context
+                        do {
+                            try backgroundContext.save()
+                            DispatchQueue.main.async {
+                                completion(nil)
+                            }
+                        } catch {
+                            DispatchQueue.main.async {
+                                completion(error)
+                            }
+                        }
+                    } else {
+                        // Insufficient quantity or remainder
+                        DispatchQueue.main.async {
+                            completion(NSError(domain: "InsufficientQuantity", code: 400, userInfo: [NSLocalizedDescriptionKey: "Insufficient quantity or remainder for product"]))
+                        }
+                    }
+                } else {
+                    // Product not found
+                    DispatchQueue.main.async {
+                        completion(NSError(domain: "ProductNotFound", code: 404, userInfo: nil))
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+        }
+    }
 }

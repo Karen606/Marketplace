@@ -26,10 +26,10 @@ class ProductTableViewCell: UITableViewCell {
 
     }
     
-    func setupData(product: ProductInfo) {
+    func setupData(product: ProductInfoModel) {
         nameLabel.text = product.product?.name
-        marketplaceLabel.text = "\(ProductsViewModel.shared.selectedMarketplace?.name ?? "") warehouse: \(product.remainder)"
-        let sold = "Sold \(product.sold)"
+        marketplaceLabel.text = "\(ProductsViewModel.shared.selectedMarketplace?.name ?? "") warehouse: \(product.remainder ?? 0)"
+        let sold = "Sold \(product.sold ?? 0)"
         let attributedString = NSMutableAttributedString(string: sold)
         let range = NSRange(location: 0, length: sold.count)
         attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
@@ -40,7 +40,6 @@ class ProductTableViewCell: UITableViewCell {
         } else {
             return
         }
-        
     }
     
 }
