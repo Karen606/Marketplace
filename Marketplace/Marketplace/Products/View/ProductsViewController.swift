@@ -103,6 +103,12 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 60
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let productVC = ProductViewController(nibName: "ProductViewController", bundle: nil)
+        ProductViewModel.shared.productID = viewModel.products[indexPath.row].product?.id
+        self.navigationController?.pushViewController(productVC, animated: true)
+    }
 }
 
 

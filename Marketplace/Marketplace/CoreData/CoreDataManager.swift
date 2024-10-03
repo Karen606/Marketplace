@@ -43,28 +43,63 @@ class CoreDataManager {
 //        }
 //    }
     
+//    func fetchMarketplaces(completion: @escaping ([Marketplace], Error?) -> Void) {
+//        let backgroundContext = persistentContainer.newBackgroundContext()
+//        backgroundContext.perform {
+//            let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
+//            
+//            do {
+//                let marketplaces = try backgroundContext.fetch(fetchRequest)
+//                for marketplace in marketplaces {
+//                    if let products = marketplace.products {
+//                        for productInfo in products {
+//                            print("Product Info - Remainder: \(productInfo.remainder), Sold: \(productInfo.sold)")
+//                            if let product = productInfo.product {
+//                                print("Product - Name: \(product.name ?? "No Name"), Price: \(product.price)")
+//                            }
+//                        }
+//                    }
+//                }
+//                completion(marketplaces, nil) // Call completion with the fetched data
+//            } catch {
+//                completion([], error) // Call completion with the error
+//            }
+//        }
+//        
+//    }
+    
     func fetchMarketplaces(completion: @escaping ([Marketplace], Error?) -> Void) {
-            let context = persistentContainer.viewContext
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.perform {
             let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
-            
+
             do {
-                let marketplaces = try context.fetch(fetchRequest)
-                for marketplace in marketplaces {
-                    if let products = marketplace.products as? Set<ProductInfo> {
-                        for productInfo in products {
-                            print("Product Info - Remainder: \(productInfo.remainder), Sold: \(productInfo.sold)")
-                            if let product = productInfo.product {
-                                print("Product - Name: \(product.name ?? "No Name"), Price: \(product.price)")
-                            }
+                // Fetch the Marketplace objects in the background context
+                let marketplaces = try backgroundContext.fetch(fetchRequest)
+                
+                // Get their object IDs (thread-safe)
+                let marketplaceObjectIDs = marketplaces.map { $0.objectID }
+                
+                // Switch to the main context to get the objects back
+                DispatchQueue.main.async {
+                    let mainContext = self.persistentContainer.viewContext
+                    var marketplacesOnMainThread: [Marketplace] = []
+                    
+                    for objectID in marketplaceObjectIDs {
+                        if let marketplace = try? mainContext.existingObject(with: objectID) as? Marketplace {
+                            marketplacesOnMainThread.append(marketplace)
                         }
                     }
+                    completion(marketplacesOnMainThread, nil) // Call completion on the main thread
                 }
                 
-                completion(marketplaces, nil) // Call completion with the fetched data
             } catch {
-                completion([], error) // Call completion with the error
+                DispatchQueue.main.async {
+                    completion([], error) // Call completion on the main thread with the error
+                }
             }
         }
+    }
     
     func addDefaultMarketplaces(completion: @escaping (Error?) -> Void) {
         let marketplaces = ["Amazon", "Temu", "Ebay", "Aliexpress", "Ozon", "Wildberries"]
@@ -125,63 +160,9 @@ class CoreDataManager {
         }
     }
     
-//    func addProductsToMarketplaces(marketplaces: [MarketplaceInfoModel], completion: @escaping (Error?) -> Void) {
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            // Fetch marketplaces by IDs
-//            let marketplaceIDs = marketplaces.map { $0.id ?? UUID() } as [UUID]
-//            let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "id IN %@", marketplaceIDs as CVarArg)
-//            
-//            do {
-//                let fetchedMarketplaces = try backgroundContext.fetch(fetchRequest)
-//                
-//                // Create a dictionary for quick access by ID
-//                let marketplaceDict: [UUID: Marketplace] = Dictionary(uniqueKeysWithValues: fetchedMarketplaces.map { ($0.id, $0) })
-//                
-//                for entry in marketplaces {
-//                    if let marketplace = marketplaceDict[entry.id ?? UUID()] {
-//                        // Create a new ProductInfo object
-//                        let newProductInfo = ProductInfo(context: backgroundContext)
-//                        newProductInfo.remainder = Int32(entry.product?.remainder ?? 0)
-//                        newProductInfo.sold = Int32(entry.product?.sold ?? 0)
-//                        newProductInfo.product = entry.product?.product
-//                        
-//                        // Add the new ProductInfo object to the products array of the marketplace
-//                        if var products = marketplace.products as? [ProductInfo] {
-//                            products.append(newProductInfo)
-//                            marketplace.products = products
-//                        } else {
-//                            marketplace.products = [newProductInfo]
-//                        }
-//                    } else {
-//                        print("Marketplace with name \(entry.name) not found.")
-//                    }
-//                }
-//                
-//                // Save the context
-//                do {
-//                    try backgroundContext.save()
-//                    DispatchQueue.main.async {
-//                        completion(nil)
-//                    }
-//                } catch {
-//                    DispatchQueue.main.async {
-//                        completion(error)
-//                    }
-//                }
-//            } catch {
-//                DispatchQueue.main.async {
-//                    completion(error)
-//                }
-//            }
-//        }
-//    }
-    
     func addProductsToMarketplaces(marketplaces: [MarketplaceInfoModel], completion: @escaping (Error?) -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {
-            // Fetch marketplaces by IDs
             let marketplaceIDs = marketplaces.map { $0.id }
             let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "id IN %@", marketplaceIDs)
@@ -203,46 +184,15 @@ class CoreDataManager {
                     newProductInfo.product = product
                     if let marketplace = fetchedMarketplaces.first(where: { $0.id == entry.id }) {
                         var array: [ProductInfo] = []
-                        if var products = marketplace.products as? Set<ProductInfo> {
+                        if let products = marketplace.products as? Set<ProductInfo> {
                             array = Array(products)
-//                            products.append(newProductInfo)
-//                            marketplace.products = products
                         } else {
                             array = []
-//                            marketplace.products = [newProductInfo]
                         }
                         array.append(newProductInfo)
-                        marketplace.products = NSSet(array: array)
+                        marketplace.products = NSSet(array: array) as! Set<ProductInfo>
                     }
                 }
-                
-                
-                
-                
-//                 Create a dictionary for quick access by ID
-//                let marketplaceDict = Dictionary(uniqueKeysWithValues: marketplaces.map { ($0.id, $0) })
-//                
-//                
-//                for entry in marketplaces {
-//                    if let marketplace = marketplaceDict[entry.id] {
-//                        // Create a new ProductInfo object
-//                        let newProductInfo = ProductInfo(context: backgroundContext)
-//                        newProductInfo.remainder = Int32(entry.product?.remainder ?? 0)
-//                        newProductInfo.sold = Int32(entry.product?.sold ?? 0)
-//                        newProductInfo.product = entry.product?.product
-//
-//                        // Add the new ProductInfo object to the products array of the marketplace
-//                        if var products = marketplace.products {
-//                            products.append(newProductInfo)
-//                            marketplace.products = products
-//                        } else {
-//                            marketplace.products = [newProductInfo]
-//                        }
-//                    } else {
-//                        print("Marketplace with name \(entry.name) not found.")
-//                    }
-//                }
-                
                 do {
                     try backgroundContext.save()
                     DispatchQueue.main.async {
@@ -256,6 +206,25 @@ class CoreDataManager {
             } catch {
                 DispatchQueue.main.async {
                     completion(error)
+                }
+            }
+        }
+    }
+    
+    func fetchMarketplacesByProductID(id: UUID, completion: @escaping ([Marketplace], Error?) -> Void) {
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.perform {
+            let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
+            let predicate = NSPredicate(format: "SUBQUERY(products, $productInfo, SUBQUERY($productInfo.product, $product, $product.id == %@).@count > 0).@count > 0", id as CVarArg)
+                fetchRequest.predicate = predicate
+            do {
+                let results = try backgroundContext.fetch(fetchRequest)
+                DispatchQueue.main.async {
+                    completion(results, nil)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion([], error)
                 }
             }
         }

@@ -16,6 +16,7 @@
     <entity name="ProductInfo" representedClassName=".ProductInfo" syncable="YES">
         <attribute name="remainder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sold" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="marketplace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductInfo" inverseName="marketplace" inverseEntity="ProductInfo"/>
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="productInfo" inverseEntity="Product"/>
     </entity>
 </model>

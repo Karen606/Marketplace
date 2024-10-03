@@ -61,6 +61,11 @@
 		6B0C1DAB2CACA76200C701D1 /* ProductFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1DA82CACA76200C701D1 /* ProductFormTableViewCell.swift */; };
 		6B0C1DAE2CACAA7700C701D1 /* MarketplaceInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1DAD2CACAA7700C701D1 /* MarketplaceInfoModel.swift */; };
 		6B0C1DB12CACAA9F00C701D1 /* ProductFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1DB02CACAA9F00C701D1 /* ProductFormViewModel.swift */; };
+		6B0C1DB62CAE246E00C701D1 /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C1DB52CAE246E00C701D1 /* ProductViewController.xib */; };
+		6B0C1DB72CAE246E00C701D1 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1DB42CAE246E00C701D1 /* ProductViewController.swift */; };
+		6B0C1DBF2CAE2A3400C701D1 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1DBE2CAE2A3400C701D1 /* ProductViewModel.swift */; };
+		6B0C1DC32CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C1DC22CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.xib */; };
+		6B0C1DC42CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1DC12CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +124,11 @@
 		6B0C1DA92CACA76200C701D1 /* ProductFormTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductFormTableViewCell.xib; sourceTree = "<group>"; };
 		6B0C1DAD2CACAA7700C701D1 /* MarketplaceInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceInfoModel.swift; sourceTree = "<group>"; };
 		6B0C1DB02CACAA9F00C701D1 /* ProductFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFormViewModel.swift; sourceTree = "<group>"; };
+		6B0C1DB42CAE246E00C701D1 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		6B0C1DB52CAE246E00C701D1 /* ProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewController.xib; sourceTree = "<group>"; };
+		6B0C1DBE2CAE2A3400C701D1 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		6B0C1DC12CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceInfoTableViewCell.swift; sourceTree = "<group>"; };
+		6B0C1DC22CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketplaceInfoTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +162,7 @@
 		6B0C1D052CABFBF200C701D1 /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				6B0C1DB22CAE244D00C701D1 /* Product */,
 				6B0C1D9C2CAC997B00C701D1 /* ProductForm */,
 				6B0C1D822CAC5C0400C701D1 /* Products */,
 				6B0C1D832CAC5C2400C701D1 /* MarketplaceForm */,
@@ -370,6 +381,42 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		6B0C1DB22CAE244D00C701D1 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1DBD2CAE2A1900C701D1 /* ViewModel */,
+				6B0C1DB82CAE247200C701D1 /* Cell */,
+				6B0C1DB32CAE245500C701D1 /* View */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		6B0C1DB32CAE245500C701D1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1DB42CAE246E00C701D1 /* ProductViewController.swift */,
+				6B0C1DB52CAE246E00C701D1 /* ProductViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B0C1DB82CAE247200C701D1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1DC12CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.swift */,
+				6B0C1DC22CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		6B0C1DBD2CAE2A1900C701D1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C1DBE2CAE2A3400C701D1 /* ProductViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -446,10 +493,12 @@
 				6B0C1D302CABFF3B00C701D1 /* SFProText-MediumItalic.ttf in Resources */,
 				6B0C1D0E2CABFBF200C701D1 /* Base in Resources */,
 				6B0C1D452CAC1A1200C701D1 /* MarketplacesViewController.xib in Resources */,
+				6B0C1DC32CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.xib in Resources */,
 				6B0C1D2F2CABFF3B00C701D1 /* SFProText-Regular.ttf in Resources */,
 				6B0C1DA02CAC999300C701D1 /* ProductFormViewController.xib in Resources */,
 				6B0C1D862CAC5C4B00C701D1 /* MarketplaceFormViewController.xib in Resources */,
 				6B0C1D2B2CABFF3B00C701D1 /* SFProText-Light.ttf in Resources */,
+				6B0C1DB62CAE246E00C701D1 /* ProductViewController.xib in Resources */,
 				6B0C1D282CABFF3B00C701D1 /* SFProText-Bold.ttf in Resources */,
 				6B0C1D2A2CABFF3B00C701D1 /* SFProText-Semibold.ttf in Resources */,
 				6B0C1D4C2CAC20FD00C701D1 /* MarketplaceTableViewCell.xib in Resources */,
@@ -468,6 +517,7 @@
 				6B0C1D0B2CABFBF200C701D1 /* MenuViewController.swift in Sources */,
 				6B0C1DB12CACAA9F00C701D1 /* ProductFormViewModel.swift in Sources */,
 				6B0C1D892CAC605800C701D1 /* UITextField.swift in Sources */,
+				6B0C1DB72CAE246E00C701D1 /* ProductViewController.swift in Sources */,
 				6B0C1D732CAC29EF00C701D1 /* ProductInfo+CoreDataClass.swift in Sources */,
 				6B0C1D742CAC29EF00C701D1 /* ProductInfo+CoreDataProperties.swift in Sources */,
 				6B0C1D872CAC5C4B00C701D1 /* MarketplaceFormViewController.swift in Sources */,
@@ -476,6 +526,7 @@
 				6B0C1D762CAC29EF00C701D1 /* Product+CoreDataProperties.swift in Sources */,
 				6B0C1D482CAC1D7500C701D1 /* ShadowView.swift in Sources */,
 				6B0C1D112CABFBF200C701D1 /* Marketplace.xcdatamodeld in Sources */,
+				6B0C1DBF2CAE2A3400C701D1 /* ProductViewModel.swift in Sources */,
 				6B0C1D422CAC14AD00C701D1 /* MarketplaceModel.swift in Sources */,
 				6B0C1D3B2CAC09E400C701D1 /* SettingsViewController.swift in Sources */,
 				6B0C1D4D2CAC20FD00C701D1 /* MarketplaceTableViewCell.swift in Sources */,
@@ -491,6 +542,7 @@
 				6B0C1D342CAC073600C701D1 /* UIView.swift in Sources */,
 				6B0C1DAB2CACA76200C701D1 /* ProductFormTableViewCell.swift in Sources */,
 				6B0C1D8E2CAC7AD300C701D1 /* ProductsViewController.swift in Sources */,
+				6B0C1DC42CAE3A1B00C701D1 /* MarketplaceInfoTableViewCell.swift in Sources */,
 				6B0C1DA12CAC999300C701D1 /* ProductFormViewController.swift in Sources */,
 				6B0C1D4F2CAC220200C701D1 /* PaddingLabel.swift in Sources */,
 				6B0C1D7D2CAC2B8A00C701D1 /* Marketplace+CoreDataClass.swift in Sources */,
