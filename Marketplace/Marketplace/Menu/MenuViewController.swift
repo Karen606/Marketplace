@@ -34,6 +34,8 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func clickedAnalytics(_ sender: UIButton) {
+        let reportsVC = ReportsViewController(nibName: "ReportsViewController", bundle: nil)
+        self.navigationController?.pushViewController(reportsVC, animated: true)
     }
     
     @IBAction func clickedSettings(_ sender: UIButton) {

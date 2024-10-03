@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportsViewController" customModule="Marketplace" customModuleProvider="target">
+            <connections>
+                <outlet property="calendarLabel" destination="7KY-0O-Y6Y" id="eFi-AC-Tng"/>
+                <outlet property="reportsCollectionView" destination="Y3r-8T-qE1" id="I2g-9l-iqw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqE-Rq-blY">
+                    <rect key="frame" x="0.0" y="780" width="393" height="38"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlT-AO-wPl">
+                            <rect key="frame" x="325" y="0.0" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="38" id="K3V-8H-w0s"/>
+                                <constraint firstAttribute="height" constant="38" id="rzb-wB-tUI"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="Calendar"/>
+                            <connections>
+                                <action selector="choosePeriod:" destination="-1" eventType="touchUpInside" id="JXu-Kp-ycy"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View for the period" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7KY-0O-Y6Y">
+                            <rect key="frame" x="30" y="0.0" width="281" height="44"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="JlT-AO-wPl" firstAttribute="leading" secondItem="7KY-0O-Y6Y" secondAttribute="trailing" constant="14" id="18a-sY-JCJ"/>
+                        <constraint firstAttribute="bottom" secondItem="7KY-0O-Y6Y" secondAttribute="bottom" constant="-6" id="KFF-TW-Tni"/>
+                        <constraint firstAttribute="bottom" secondItem="JlT-AO-wPl" secondAttribute="bottom" id="MXA-9k-cn4"/>
+                        <constraint firstItem="JlT-AO-wPl" firstAttribute="top" secondItem="uqE-Rq-blY" secondAttribute="top" id="aeX-GN-rmM"/>
+                        <constraint firstItem="7KY-0O-Y6Y" firstAttribute="top" secondItem="uqE-Rq-blY" secondAttribute="top" id="fGP-Ec-lAR"/>
+                        <constraint firstAttribute="trailing" secondItem="JlT-AO-wPl" secondAttribute="trailing" constant="30" id="hOv-ue-Yew"/>
+                        <constraint firstItem="7KY-0O-Y6Y" firstAttribute="leading" secondItem="uqE-Rq-blY" secondAttribute="leading" constant="30" id="oNv-sY-jRu"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Y3r-8T-qE1">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <color key="backgroundColor" name="Background"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uhg-gX-Csm">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="Background"/>
+            <constraints>
+                <constraint firstItem="uqE-Rq-blY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1PL-vt-FbL"/>
+                <constraint firstItem="Y3r-8T-qE1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="2F0-zf-7I7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uqE-Rq-blY" secondAttribute="bottom" id="AD4-xt-ZJG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uqE-Rq-blY" secondAttribute="trailing" id="YLD-1s-baM"/>
+                <constraint firstItem="Y3r-8T-qE1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ht7-qZ-sX1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y3r-8T-qE1" secondAttribute="trailing" id="iIH-tG-odx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Y3r-8T-qE1" secondAttribute="bottom" id="wtF-qW-khq"/>
+            </constraints>
+            <point key="canvasLocation" x="67.938931297709928" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Calendar" width="38" height="38"/>
+        <namedColor name="Background">
+            <color red="0.75300002098083496" green="0.84700000286102295" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
