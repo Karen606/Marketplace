@@ -18,7 +18,7 @@ extension Marketplace {
 
     @NSManaged public var id: UUID
     @NSManaged public var name: String
-    @NSManaged public var products: [ProductInfo]?
+    @NSManaged public var products: NSSet?
 
 }
 

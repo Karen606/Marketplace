@@ -19,6 +19,8 @@ class MarketplacesViewModel {
         CoreDataManager.shared.fetchMarketplaces { [weak self] marketplaces, error in
             guard let self = self else { return }
             self.marketplaces = marketplaces
+    
+            
             self.filter(by: search)
         }
     }

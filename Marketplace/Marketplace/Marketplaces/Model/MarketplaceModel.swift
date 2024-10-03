@@ -24,4 +24,5 @@ struct ProductModel {
     var name: String?
     var price: Double?
     var quantity: Int?
+    var photo: Data?
 }

@@ -95,4 +95,10 @@ extension MarketplacesViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 60
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let productsVC = ProductsViewController(nibName: "ProductsViewController", bundle: nil)
+        ProductsViewModel.shared.chooseMarketplace(marketplace: viewModel.marketplaces[indexPath.row])
+        self.navigationController?.pushViewController(productsVC, animated: true)
+    }
 }

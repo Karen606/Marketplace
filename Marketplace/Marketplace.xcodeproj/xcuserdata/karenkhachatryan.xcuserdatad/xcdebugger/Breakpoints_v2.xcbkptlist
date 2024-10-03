@@ -7,80 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C0ED321D-12DC-4000-A786-D278C5988E39"
+            uuid = "B859D7BB-5BED-4C50-940C-90DE0280785C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Marketplace/CoreData/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "addMarketplace(name:completion:)"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "addProductsToMarketplaces(marketplaces:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6C9A39B5-0E40-4081-904F-8A899AC242BE"
+            uuid = "D34516EE-A235-4B1F-B08E-31869FE14DA6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Marketplace/CoreData/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "addMarketplace(name:completion:)"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "addProductsToMarketplaces(marketplaces:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "21C2C1DA-2631-4200-A094-A3E1EBC4354A"
+            uuid = "F3079AA1-CA61-4FD1-A963-68A9BF14FA8D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Marketplace/CoreData/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "addMarketplace(name:completion:)"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "addProductsToMarketplaces(marketplaces:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "68046020-27C3-478D-8F09-067E38EC3FB4"
+            uuid = "86975A73-5B36-423B-B354-89AA1F0884DE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Marketplace/CoreData/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "addMarketplace(name:completion:)"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "addProductsToMarketplaces(marketplaces:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "01537BD2-C57F-419E-B432-9F3C7313E892"
+            uuid = "A26DD4CC-D95F-4D5E-BF79-AA18C8EE5A07"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Marketplace/CoreData/CoreDataManager.swift"
+            filePath = "Marketplace/Products/ViewModel/ProductsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "addMarketplace(name:completion:)"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "chooseMarketplace(marketplace:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

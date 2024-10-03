@@ -13,6 +13,8 @@ class MarketplaceFormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBackButton()
+        setNavigationMenuButton()
         nameTextField.delegate = self
         saveButton.titleLabel?.font = .semibold(size: 16)
         saveButton.layer.cornerRadius = 20
@@ -34,6 +36,6 @@ class MarketplaceFormViewController: UIViewController {
 
 extension MarketplaceFormViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        saveButton.isHidden = textField.isValid
+        saveButton.isHidden = !textField.isValid
     }
 }

@@ -20,6 +20,7 @@ extension Product {
     @NSManaged public var name: String?
     @NSManaged public var price: Double
     @NSManaged public var quantity: Int32
+    @NSManaged public var photo: Data?
 
 }
 
