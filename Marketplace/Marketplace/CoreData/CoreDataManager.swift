@@ -22,52 +22,6 @@ class CoreDataManager {
         return container
     }()
     
-//    func fetchMarketplaces(completion: @escaping ([Marketplace], Error?) -> Void) {
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
-//            do {
-//                let results = try backgroundContext.fetch(fetchRequest)
-//                for marketplace in results {
-//                    _ = marketplace.name // Force property to load
-//                    print("Marketplace name: \(marketplace.name)")
-//                }
-//                DispatchQueue.main.async {
-//                    completion(results, nil)
-//                }
-//            } catch {
-//                DispatchQueue.main.async {
-//                    completion([], error)
-//                }
-//            }
-//        }
-//    }
-    
-//    func fetchMarketplaces(completion: @escaping ([Marketplace], Error?) -> Void) {
-//        let backgroundContext = persistentContainer.newBackgroundContext()
-//        backgroundContext.perform {
-//            let fetchRequest: NSFetchRequest<Marketplace> = Marketplace.fetchRequest()
-//            
-//            do {
-//                let marketplaces = try backgroundContext.fetch(fetchRequest)
-//                for marketplace in marketplaces {
-//                    if let products = marketplace.products {
-//                        for productInfo in products {
-//                            print("Product Info - Remainder: \(productInfo.remainder), Sold: \(productInfo.sold)")
-//                            if let product = productInfo.product {
-//                                print("Product - Name: \(product.name ?? "No Name"), Price: \(product.price)")
-//                            }
-//                        }
-//                    }
-//                }
-//                completion(marketplaces, nil) // Call completion with the fetched data
-//            } catch {
-//                completion([], error) // Call completion with the error
-//            }
-//        }
-//        
-//    }
-    
     func fetchMarketplaces(completion: @escaping ([MarketplaceModel], Error?) -> Void) {
         let backgroundContext = persistentContainer.newBackgroundContext()
         backgroundContext.perform {
