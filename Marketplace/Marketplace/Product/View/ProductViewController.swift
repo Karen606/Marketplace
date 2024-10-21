@@ -47,7 +47,7 @@ class ProductViewController: UIViewController {
                 self.infoLabels[0].text = "Price: \(product?.product?.price ?? 0)$"
                 self.infoLabels[1].text = "Earnings: \(self.viewModel.calculateEarnings())"
                 self.infoLabels[2].text = "On sale at: \(marketplaces)"
-                self.infoLabels[3].text = "Remainder: \(product?.remainder ?? 0)"
+                self.infoLabels[3].text = "Remainder: \((product?.product?.quantity ?? 0) - self.viewModel.calculateTotalRemainder())"
                 if let data = product?.product?.photo {
                     self.imageView.image = UIImage(data: data)
                 } else {

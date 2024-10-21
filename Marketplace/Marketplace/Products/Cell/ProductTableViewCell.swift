@@ -42,4 +42,28 @@ class ProductTableViewCell: UITableViewCell {
         }
     }
     
+    func setupAllMarketplacesData(product: ProductInfoModel) {
+        nameLabel.text = product.product?.name
+       
+        if let data = product.product?.photo {
+            productImageView.image = UIImage(data: data)
+        } else {
+            return
+        }
+        var totalRemainder = 0
+        var totalSold = 0
+        OrderManagmentViewModel.shared.marketplaces.forEach { marketplace in
+            let product = marketplace.products.first(where: { $0.product?.id == product.product?.id })
+            totalRemainder += product?.remainder ?? 0
+            totalSold += product?.sold ?? 0
+        }
+        marketplaceLabel.text = "All warehouses: \(totalRemainder)"
+        let sold = "Sold \(totalSold)"
+        let attributedString = NSMutableAttributedString(string: sold)
+        let range = NSRange(location: 0, length: sold.count)
+        attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+
+        soldCountLabel.attributedText = attributedString
+    }
+    
 }

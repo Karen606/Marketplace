@@ -151,13 +151,13 @@ class CoreDataManager {
                     newProductInfo.product = product
                     if let marketplace = fetchedMarketplaces.first(where: { $0.id == entry.id }) {
                         var array: [ProductInfo] = []
-                        if let products = marketplace.products as? Set<ProductInfo> {
+                        if let products = marketplace.products {
                             array = Array(products)
                         } else {
                             array = []
                         }
                         array.append(newProductInfo)
-                        marketplace.products = NSSet(array: array) as! Set<ProductInfo>
+                        marketplace.products = NSSet(array: array) as? Set<ProductInfo>
                     }
                 }
                 do {
@@ -288,9 +288,9 @@ class CoreDataManager {
                    let product = productInfo.product {
                     
                     // Check if the product has enough quantity
-                    if product.quantity > 0 && productInfo.remainder > 0 {
+                    if /*product.quantity > 0 &&*/ productInfo.remainder > 0 {
                         // Decrease quantity and remainder by 1
-                        product.quantity -= 1
+//                        product.quantity -= 1
                         productInfo.remainder -= 1
                         
                         // Increase sold by 1
@@ -326,4 +326,86 @@ class CoreDataManager {
             }
         }
     }
+    
+    func fetchAllUniqueProducts(completion: @escaping ([ProductModel], Error?) -> Void) {
+            let backgroundContext = persistentContainer.newBackgroundContext()
+            backgroundContext.perform {
+                let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
+                
+                do {
+                    let products = try backgroundContext.fetch(fetchRequest)
+                    
+                    // Use a dictionary to ensure uniqueness by product ID
+                    var uniqueProductsDict: [UUID: Product] = [:]
+                    
+                    for product in products {
+                        if let id = product.id {
+                            uniqueProductsDict[id] = product
+                        }
+                    }
+                    
+                    // Convert unique products to ProductModel
+                    let uniqueProductModels = uniqueProductsDict.values.map { product in
+                        return ProductModel(
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            quantity: Int(product.quantity),
+                            photo: product.photo
+                        )
+                    }
+                    
+                    DispatchQueue.main.async {
+                        completion(uniqueProductModels, nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion([], error)
+                    }
+                }
+            }
+        }
+    
+    func fetchAllUniqueProductInfo(completion: @escaping ([ProductInfoModel], Error?) -> Void) {
+            let backgroundContext = persistentContainer.newBackgroundContext()
+            backgroundContext.perform {
+                let fetchRequest: NSFetchRequest<ProductInfo> = ProductInfo.fetchRequest()
+                
+                do {
+                    let productInfos = try backgroundContext.fetch(fetchRequest)
+                    
+                    // Use a dictionary to ensure uniqueness by product ID
+                    var uniqueProductInfoDict: [UUID: ProductInfo] = [:]
+                    
+                    for productInfo in productInfos {
+                        if let productId = productInfo.product?.id {
+                            uniqueProductInfoDict[productId] = productInfo
+                        }
+                    }
+                    
+                    // Convert unique product infos to ProductInfoModel
+                    let uniqueProductInfoModels = uniqueProductInfoDict.values.map { productInfo in
+                        return ProductInfoModel(
+                            product: ProductModel(
+                                id: productInfo.product?.id,
+                                name: productInfo.product?.name,
+                                price: productInfo.product?.price ?? 0,
+                                quantity: Int(productInfo.product?.quantity ?? 0),
+                                photo: productInfo.product?.photo
+                            ),
+                            remainder: Int(productInfo.remainder),
+                            sold: Int(productInfo.sold)
+                        )
+                    }
+                    
+                    DispatchQueue.main.async {
+                        completion(uniqueProductInfoModels, nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion([], error)
+                    }
+                }
+            }
+        }
 }

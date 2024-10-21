@@ -70,6 +70,9 @@
 		6B0C1DCA2CAEB48000C701D1 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1DC72CAEB48000C701D1 /* ReportsViewController.swift */; };
 		6B0C1DCE2CAEB66E00C701D1 /* ReportCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C1DCD2CAEB66E00C701D1 /* ReportCollectionViewCell.xib */; };
 		6B0C1DCF2CAEB66E00C701D1 /* ReportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C1DCC2CAEB66E00C701D1 /* ReportCollectionViewCell.swift */; };
+		6BCE24082CC642AF00D04B0A /* OrderManagmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BCE24072CC642AF00D04B0A /* OrderManagmentViewController.xib */; };
+		6BCE24092CC642AF00D04B0A /* OrderManagmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE24062CC642AF00D04B0A /* OrderManagmentViewController.swift */; };
+		6BCE240D2CC6519F00D04B0A /* OrderManagmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE240C2CC6519F00D04B0A /* OrderManagmentViewModel.swift */; };
 		6BE4DA0D2CAEB7D8003846F4 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE4DA0C2CAEB7D8003846F4 /* ReportsViewModel.swift */; };
 		6BE4DA102CAEB87B003846F4 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE4DA0F2CAEB87B003846F4 /* ReportModel.swift */; };
 /* End PBXBuildFile section */
@@ -139,6 +142,9 @@
 		6B0C1DC82CAEB48000C701D1 /* ReportsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportsViewController.xib; sourceTree = "<group>"; };
 		6B0C1DCC2CAEB66E00C701D1 /* ReportCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B0C1DCD2CAEB66E00C701D1 /* ReportCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportCollectionViewCell.xib; sourceTree = "<group>"; };
+		6BCE24062CC642AF00D04B0A /* OrderManagmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManagmentViewController.swift; sourceTree = "<group>"; };
+		6BCE24072CC642AF00D04B0A /* OrderManagmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderManagmentViewController.xib; sourceTree = "<group>"; };
+		6BCE240C2CC6519F00D04B0A /* OrderManagmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManagmentViewModel.swift; sourceTree = "<group>"; };
 		6BE4DA0C2CAEB7D8003846F4 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
 		6BE4DA0F2CAEB87B003846F4 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +180,7 @@
 		6B0C1D052CABFBF200C701D1 /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				6BCE24042CC6429100D04B0A /* OrderManagment */,
 				6B0C1DC52CAEB46100C701D1 /* Reports */,
 				6B0C1DB22CAE244D00C701D1 /* Product */,
 				6B0C1D9C2CAC997B00C701D1 /* ProductForm */,
@@ -459,6 +466,32 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		6BCE24042CC6429100D04B0A /* OrderManagment */ = {
+			isa = PBXGroup;
+			children = (
+				6BCE240B2CC6519100D04B0A /* ViewModel */,
+				6BCE24052CC6429B00D04B0A /* View */,
+			);
+			path = OrderManagment;
+			sourceTree = "<group>";
+		};
+		6BCE24052CC6429B00D04B0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6BCE24062CC642AF00D04B0A /* OrderManagmentViewController.swift */,
+				6BCE24072CC642AF00D04B0A /* OrderManagmentViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6BCE240B2CC6519100D04B0A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BCE240C2CC6519F00D04B0A /* OrderManagmentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6BE4DA0B2CAEB7CD003846F4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +593,7 @@
 				6B0C1D2B2CABFF3B00C701D1 /* SFProText-Light.ttf in Resources */,
 				6B0C1DB62CAE246E00C701D1 /* ProductViewController.xib in Resources */,
 				6B0C1D282CABFF3B00C701D1 /* SFProText-Bold.ttf in Resources */,
+				6BCE24082CC642AF00D04B0A /* OrderManagmentViewController.xib in Resources */,
 				6B0C1D2A2CABFF3B00C701D1 /* SFProText-Semibold.ttf in Resources */,
 				6B0C1D4C2CAC20FD00C701D1 /* MarketplaceTableViewCell.xib in Resources */,
 				6B0C1D2E2CABFF3B00C701D1 /* SFProText-Medium.ttf in Resources */,
@@ -599,7 +633,9 @@
 				6B0C1DA32CACA1C400C701D1 /* PriceTextField.swift in Sources */,
 				6B0C1D812CAC2C1A00C701D1 /* CoreDataManager.swift in Sources */,
 				6B0C1DAE2CACAA7700C701D1 /* MarketplaceInfoModel.swift in Sources */,
+				6BCE24092CC642AF00D04B0A /* OrderManagmentViewController.swift in Sources */,
 				6B0C1D072CABFBF200C701D1 /* AppDelegate.swift in Sources */,
+				6BCE240D2CC6519F00D04B0A /* OrderManagmentViewModel.swift in Sources */,
 				6B0C1D462CAC1A1200C701D1 /* MarketplacesViewController.swift in Sources */,
 				6B0C1D932CAC89E100C701D1 /* BaseTextField.swift in Sources */,
 				6B0C1D342CAC073600C701D1 /* UIView.swift in Sources */,
@@ -690,7 +726,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -747,7 +783,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

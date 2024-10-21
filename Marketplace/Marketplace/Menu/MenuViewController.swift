@@ -31,6 +31,8 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func clickedOrderManagment(_ sender: UIButton) {
+        let orderManagmentVC = OrderManagmentViewController(nibName: "OrderManagmentViewController", bundle: nil)
+        self.navigationController?.pushViewController(orderManagmentVC, animated: true)
     }
     
     @IBAction func clickedAnalytics(_ sender: UIButton) {

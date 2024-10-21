@@ -52,7 +52,7 @@ class ProductFormViewModel {
     func setRemainder(id: UUID, remainder: Int?) -> Bool {
         guard let index = selectedMarketplaces.firstIndex(where: { $0.id == id }) else { return false }
         let total = selectedMarketplaces.reduce(0) { sum, marketplace in
-            sum + (marketplace.product?.remainder ?? 0)
+            sum + (marketplace.product?.remainder ?? 0) + (marketplace.product?.sold ?? 0)
         }
         let stock = (product.quantity ?? 0) - total + (selectedMarketplaces[index].product?.remainder ?? 0)
         

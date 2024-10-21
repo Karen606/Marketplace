@@ -45,6 +45,25 @@ class ProductViewModel {
         }
     }
     
+    func calculateTotalRemainder() -> Int {
+        var totalRemainder = 0
+        var totalSold = 0
+        
+        for marketplace in marketplaces {
+            for productInfo in marketplace.products {
+                if let quantity = productInfo.remainder {
+                    totalRemainder += quantity
+                }
+                if let sold = productInfo.sold {
+                    totalSold += sold
+                }
+            }
+        }
+        
+        let totalQuantity = totalRemainder + totalSold
+        return totalQuantity
+    }
+    
     func clear() {
         productID = nil
         marketplaces = []
